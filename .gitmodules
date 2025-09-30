@@ -1,0 +1,6 @@
+[submodule "Backend"]
+	path = Backend
+	url = https://github.com/crisstiank1/BackendDocuCloud
+[submodule "Frontend"]
+	path = Frontend
+	url = https://github.com/crisstiank1/frontend-docu-cloud
