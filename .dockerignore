@@ -1,18 +1,52 @@
-Ignorar archivos internos de Git y Docker
+# -------------------------------
+# Git y control de versiones
+# -------------------------------
 .git
 .gitignore
+.gitattributes
+.gitmodules
+
+# -------------------------------
+# Configuración de Docker
+# -------------------------------
 .dockerignore
+
+# -------------------------------
+# Configuración de IDEs y editores
+# -------------------------------
 .vscode/
 .idea/
-
-Artefactos de la compilación de Gradle que no deben ser copiados
-build/
-.gradle/
 *.iml
 
-Cache y logs de la aplicación
-log/
-temp/
+# -------------------------------
+# Artefactos de compilación (Java/Gradle)
+# -------------------------------
+Backend/build/
+Backend/.gradle/
 
-Archivos de configuración de desarrollo (si los hay)
+# -------------------------------
+# Node.js / Vue (Frontend)
+# -------------------------------
+Frontend/node_modules/
+Frontend/dist/
+npm-debug.log
+yarn-error.log
+
+# -------------------------------
+# Cache, logs y temporales
+# -------------------------------
+log/
+logs/
+temp/
+*.log
+*~
+*.swp
+*.bak
+
+# -------------------------------
+# Configuración sensible
+# -------------------------------
 *.env
+.env.local
+.env.*
+*.secret

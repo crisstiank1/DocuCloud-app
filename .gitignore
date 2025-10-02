@@ -1,31 +1,59 @@
-Backend (Spring Boot/Gradle)
-BackendDocuCloud/build/
-BackendDocuCloud/.gradle/
-BackendDocuCloud/.idea/
-BackendDocuCloud/*.iml
+# -------------------------------
+# Archivos de Git
+# -------------------------------
+*.orig
+*.rej
 
-Frontend (Vue/Node)
-FrontendDocuCloud/node_modules/
-FrontendDocuCloud/dist/
-FrontendDocuCloud/temp/
+# -------------------------------
+# IDEs y editores
+# -------------------------------
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+*.bak
 
-Clasificador (Python/FastAPI)
-ClasificadorDocuCloud/pycache/
-ClasificadorDocuCloud/.venv/
-ClasificadorDocuCloud/venv/
-ClasificadorDocuCloud/models/ # Si los modelos ML son muy grandes
-ClasificadorDocuCloud/reports/
-
-----------------------------------------------------------------------
-Archivos de Configuración Local y Secretos
-----------------------------------------------------------------------
-.env
-.env.
-*.log
-docker-compose.override.yml
-
-----------------------------------------------------------------------
-Archivos Generados por Sistemas Operativos
-----------------------------------------------------------------------
+# -------------------------------
+# Archivos del sistema operativo
+# -------------------------------
 .DS_Store
 Thumbs.db
+
+# -------------------------------
+# Backend (Spring Boot / Gradle)
+# -------------------------------
+Backend/build/
+Backend/.gradle/
+Backend/out/
+
+# Logs de la app backend
+Backend/*.log
+Backend/logs/
+
+# -------------------------------
+# Frontend (Vue / Node.js)
+# -------------------------------
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.cache/
+
+# Logs frontend
+Frontend/npm-debug.log*
+Frontend/yarn-error.log*
+Frontend/pnpm-debug.log*
+
+# -------------------------------
+# Configuración sensible
+# -------------------------------
+*.env
+.env.local
+.env.*
+*.secret
+
+# -------------------------------
+# Archivos de Docker
+# -------------------------------
+.dockerignore
+docker-compose.override.yml
