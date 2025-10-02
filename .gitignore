@@ -1,0 +1,31 @@
+Backend (Spring Boot/Gradle)
+BackendDocuCloud/build/
+BackendDocuCloud/.gradle/
+BackendDocuCloud/.idea/
+BackendDocuCloud/*.iml
+
+Frontend (Vue/Node)
+FrontendDocuCloud/node_modules/
+FrontendDocuCloud/dist/
+FrontendDocuCloud/temp/
+
+Clasificador (Python/FastAPI)
+ClasificadorDocuCloud/pycache/
+ClasificadorDocuCloud/.venv/
+ClasificadorDocuCloud/venv/
+ClasificadorDocuCloud/models/ # Si los modelos ML son muy grandes
+ClasificadorDocuCloud/reports/
+
+----------------------------------------------------------------------
+Archivos de Configuración Local y Secretos
+----------------------------------------------------------------------
+.env
+.env.
+*.log
+docker-compose.override.yml
+
+----------------------------------------------------------------------
+Archivos Generados por Sistemas Operativos
+----------------------------------------------------------------------
+.DS_Store
+Thumbs.db

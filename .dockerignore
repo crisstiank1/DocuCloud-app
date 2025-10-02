@@ -1,0 +1,18 @@
+Ignorar archivos internos de Git y Docker
+.git
+.gitignore
+.dockerignore
+.vscode/
+.idea/
+
+Artefactos de la compilación de Gradle que no deben ser copiados
+build/
+.gradle/
+*.iml
+
+Cache y logs de la aplicación
+log/
+temp/
+
+Archivos de configuración de desarrollo (si los hay)
+*.env

@@ -1,0 +1,71 @@
+version: '3.8'
+
+# Este archivo usa imágenes pre-construidas o asume que el build fue exitoso
+# y se enfoca en el rendimiento y la estabilidad.
+
+services:
+  # 1. Base de Datos PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: docucloud-db-prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    # En producción es CRUCIAL usar un volumen persistente
+    volumes:
+      - docucloud-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  # 2. Backend (Spring Boot API)
+  backend:
+    build:
+      context: ./BackendDocuCloud
+      dockerfile: Dockerfile
+    container_name: docucloud-backend-prod
+    restart: always
+    environment:
+      # Configuraciones de producción, logging, y conexión a DB
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SERVER_PORT: 8080 # Puerto interno
+      # Agrega aquí variables específicas de producción (ej. tokens JWT, modo de log)
+    # En producción, NO se usan volúmenes para montar código fuente
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # 3. Clasificador (FastAPI) - Descomentar cuando el Dockerfile esté listo
+  # classifier:
+  #   build:
+  #     context: ./ClasificadorDocuCloud
+  #     dockerfile: Dockerfile
+  #   container_name: docucloud-classifier-prod
+  #   restart: always
+  #   # Se podría añadir un puerto interno si fuera necesario para debugging, pero no es esencial
+  #   depends_on:
+  #     - backend # Opcional: depender de backend si lo necesita para inicializarse
+
+  # 4. Frontend (Vue.js con Nginx)
+  frontend:
+    build:
+      context: ./FrontendDocuCloud
+      dockerfile: Dockerfile
+    container_name: docucloud-frontend-prod
+    restart: always
+    # Exponemos el puerto de Nginx al exterior
+    ports:
+      - "80:80" 
+    depends_on:
+      - backend
+      #- classifier
+
+volumes:
+  docucloud-pg-data:
+    driver: local
